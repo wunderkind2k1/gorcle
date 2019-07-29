@@ -1,10 +1,15 @@
 package gorcle
 
-import "testing"
+import (
+	"fmt"
+	"image/color"
+	"testing"
+)
 
 func TestRadius(t *testing.T) {
 
-	if err == nil {
-		t.Fatalf("Expect an error when producing errors in http retrieval and htmlsource matching: %s", err)
-	}
+	blue := color.RGBA{0x00, 0x00, 0xff, 0xff}
+	circle := NewCircle(blue, 4)
+
+	fmt.Println(circle.String())
 }
