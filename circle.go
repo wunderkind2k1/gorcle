@@ -5,6 +5,8 @@ import (
 	"image"
 	"image/color"
 	"image/draw"
+	"image/png"
+	"os"
 )
 
 //this code is shamelessly taken and modified
@@ -80,3 +82,14 @@ func checkBounds(img image.Image, x, y int) error {
 }
 
 //End of taken and modified code
+
+// SavePNG saves the circle as a png to the file fileName or to image.png
+func (circle *Circle) SavePNG(fileName string, img draw.Image) error {
+	currentFileName := "image.png"
+	if len(fileName) > 0 {
+		currentFileName = fileName
+	}
+	f, _ := os.Create(currentFileName)
+	err := png.Encode(f, img)
+	return err
+}

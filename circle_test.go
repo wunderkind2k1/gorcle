@@ -2,6 +2,7 @@ package gorcle
 
 import (
 	"fmt"
+	"image"
 	"image/color"
 	"testing"
 )
@@ -12,4 +13,16 @@ func TestRadius(t *testing.T) {
 	circle := NewCircle(blue, 4)
 
 	fmt.Println(circle.String())
+}
+
+func TestPNGEncode(t *testing.T) {
+	green := color.RGBA{0x00, 0xff, 0x00, 0xff}
+	cirle := NewCircle(green, 400)
+	theImage := image.NewNRGBA(image.Rect(0, 0, 400, 400))
+	cirle.Draw(theImage, 0, 0)
+	err := cirle.SavePNG("foo.png", theImage)
+	if err != nil {
+		fmt.Printf("an error happended during writing of png file. Error is: %s", err)
+	}
+
 }
